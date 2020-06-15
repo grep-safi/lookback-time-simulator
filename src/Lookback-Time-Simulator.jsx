@@ -1,9 +1,7 @@
 import React from 'react';
 import NavigationBar from './NavigationBar.jsx';
 import MainView from './MainView.jsx';
-
-const WIDTH = 950;
-const HEIGHT = 300;
+import TimelineSlider from "./TimelineSlider";
 
 export default class LookbackTimeSimulator extends React.Component {
     constructor(props) {
@@ -29,11 +27,16 @@ export default class LookbackTimeSimulator extends React.Component {
                 />
 
                 <div className={"controls"}>
-                    <h1 id={"head-text"}>Timeline and Controls</h1>
+                    <h3 id={"head-text"}>Timeline and Controls</h3>
+
+                    <TimelineSlider
+
+                    />
+
                     <button
                         type={"box"}
                         className={"go-supernova"}
-                        >
+                    >
                         Go Supernova
                     </button>
                 </div>

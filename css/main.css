@@ -21,6 +21,14 @@ body {
     border: 1px solid black;
 }
 
+.timeline-slider {
+    border: 1px solid palevioletred;
+    position: relative;
+    width: 800px;
+    height: 100px;
+}
+
+
 .controls {
     margin-top: 10px;
     position: relative;
@@ -31,5 +39,7 @@ body {
 
 #head-text {
     margin-left: 10px;
+    margin-top: 10px;
+    text-align: center;
     color: darkgoldenrod;
 }
