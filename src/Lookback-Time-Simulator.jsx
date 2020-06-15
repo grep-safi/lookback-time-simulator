@@ -18,10 +18,24 @@ export default class LookbackTimeSimulator extends React.Component {
     render() {
         return (
             <React.Fragment>
-                <div className="NavigationBar">
+                <div className="navigation-bar">
                     <NavigationBar
-                        // onReset={this.handleReset.bind(this)}
+
                     />
+                </div>
+
+                <MainView
+
+                />
+
+                <div className={"controls"}>
+                    <h1 id={"head-text"}>Timeline and Controls</h1>
+                    <button
+                        type={"box"}
+                        className={"go-supernova"}
+                        >
+                        Go Supernova
+                    </button>
                 </div>
             </React.Fragment>
         );
