@@ -27,14 +27,20 @@ export default class TimelineSlider extends React.Component {
 
     }
 
+
     render() {
         const size = 800;
-        const shiftUp = -350;
+        const shiftUp = -330;
         return (
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
-                    {/*<rect width={"100%"} height={"100%"} fill={"black"} />*/}
-                    <circle cx={125} cy={50} r={20} stroke={"red"} fill={"red"} />
+
+                    <g>
+                        <SliderIcon
+
+                        />
+                    </g>
+                    <rect width={"100%"} height={"100%"} fill={"white"} />
                     <image x={0} y={shiftUp} href={"./img/background.png"} height={size} width={size} />
                 </svg>
             </div>

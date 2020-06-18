@@ -38,7 +38,7 @@ export default class MainView extends React.Component {
                         <image x={100} y={160} href={"./img/star.png"} height={50} width={50} />
                         <image x={250} y={25} href={"./img/puzzled-man.jpg"} height={250} width={250} />
                         <image x={345} y={48} href={"./img/star.png"} height={50} width={50} />
-                        <circle cx={125} cy={186} r={0} stroke={"red"} fill={"none"} />
+                        <circle cx={125} cy={186} r={this.props.radiusLight} stroke={"red"} fill={"none"} />
                     </g>
                 </svg>
             </div>
