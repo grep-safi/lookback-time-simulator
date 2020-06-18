@@ -1,5 +1,6 @@
 import React from 'react';
 
+// radius 245 is when we hit the guy
 const WIDTH = 950;
 const HEIGHT = 350;
 
@@ -28,6 +29,7 @@ export default class MainView extends React.Component {
     }
 
     render() {
+        console.log(`radius: ${this.props.radiusLight}`);
         return (
             <div className={"main-view"}>
                 <svg width={WIDTH} height={HEIGHT}>
@@ -45,4 +47,3 @@ export default class MainView extends React.Component {
         );
     }
 }
-

@@ -65,9 +65,8 @@ export default class LookbackTimeSimulator extends React.Component {
     }
 
     animate() {
-        console.log(`playing: ${this.state.radiusLight}`);
         this.setState({
-            radiusLight: this.state.radiusLight + 1
+            radiusLight: this.state.radiusLight + 0.5
         });
 
         if (this.state.radiusLight > 500 || !this.state.animationPlaying) {
