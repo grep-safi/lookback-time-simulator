@@ -34,7 +34,7 @@ export default class LookbackTimeSimulator extends React.Component {
                     <h3 id={"head-text"}>Timeline and Controls</h3>
 
                     <TimelineSlider
-
+                        radiusLight={this.state.radiusLight}
                     />
 
                     <button

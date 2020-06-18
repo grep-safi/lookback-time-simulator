@@ -1,4 +1,5 @@
 import React from 'react';
+import SliderIcon from "./SliderIcon";
 
 const WIDTH = 800;
 const HEIGHT = 100;
@@ -35,13 +36,16 @@ export default class TimelineSlider extends React.Component {
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
 
+                    <rect width={"100%"} height={"100%"} fill={"white"} />
+
+                    <image x={0} y={shiftUp} href={"./img/background.png"} height={size} width={size} />
+
                     <g>
                         <SliderIcon
-
+                            radiusLight={this.props.radiusLight}
                         />
                     </g>
-                    <rect width={"100%"} height={"100%"} fill={"white"} />
-                    <image x={0} y={shiftUp} href={"./img/background.png"} height={size} width={size} />
+
                 </svg>
             </div>
         );
