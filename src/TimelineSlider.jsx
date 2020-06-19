@@ -4,21 +4,6 @@ import SliderIcon from "./SliderIcon";
 const WIDTH = 800;
 const HEIGHT = 100;
 
-const renderOrbitalRadii = () => {
-    return (data, index) => {
-        const circleProperties = {
-            cx: 0,
-            cy: HEIGHT / 2,
-            r: data.r,
-            stroke: data.stroke,
-            fill: "none",
-            key: index
-        }
-
-        return <circle {...circleProperties} />;
-    }
-}
-
 export default class TimelineSlider extends React.Component {
     constructor(props) {
         super(props);
@@ -28,10 +13,14 @@ export default class TimelineSlider extends React.Component {
 
     }
 
-
     render() {
         const size = 800;
         const shiftUp = -330;
+
+        // 24.5 is the minimum limit
+        // 766 us the maximum limit
+        const lineX = 24.5;
+
         return (
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
@@ -46,6 +35,7 @@ export default class TimelineSlider extends React.Component {
                         />
                     </g>
 
+                    <line x1={lineX} y1={25} x2={lineX} y2={60} strokeWidth={1} stroke={"red"} visibility={"visible"} />
                 </svg>
             </div>
         );
