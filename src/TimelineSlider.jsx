@@ -1,5 +1,6 @@
 import React from 'react';
 import SliderIcon from "./SliderIcon";
+import Timeline from "./Timeline";
 
 const WIDTH = 800;
 const HEIGHT = 100;
@@ -25,9 +26,13 @@ export default class TimelineSlider extends React.Component {
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
 
-                    <rect width={"100%"} height={"100%"} fill={"white"} />
+                    <rect width={"100%"} height={"100%"} fill={"#360000"} />
 
-                    <image x={0} y={shiftUp} href={"./img/background.png"} height={size} width={size} />
+                    <g>
+                        <Timeline
+
+                            />
+                    </g>
 
                     <g>
                         <SliderIcon
@@ -35,6 +40,7 @@ export default class TimelineSlider extends React.Component {
                         />
                     </g>
 
+                    {/*<line x1={lineX} y1={25} x2={lineX} y2={60} strokeWidth={1} stroke={"red"} visibility={this.props.hasStarted ? "visible" : "hidden"} />*/}
                     <line x1={lineX} y1={25} x2={lineX} y2={60} strokeWidth={1} stroke={"red"} visibility={"visible"} />
                 </svg>
             </div>

@@ -5,7 +5,6 @@ export default class SliderIcon extends React.Component {
     constructor(props) {
         super(props);
         this.ref = React.createRef();
-        this.x = 404.0;
     }
 
     updateX(x) {
@@ -27,7 +26,7 @@ export default class SliderIcon extends React.Component {
             .on('drag', function() {
                 const me = select(this);
                 let x = event.x - sizeX;
-                console.log(`x this is x       ${x}`);
+                // console.log(`x this is x       ${x}`);
                 if (x > maxPixel) x = maxPixel;
                 if (x < minPixel) x = minPixel;
                 updateX(x);
@@ -35,8 +34,6 @@ export default class SliderIcon extends React.Component {
                     .attr("transform", `translate(${x}, 0)`)
             });
 
-
-        // TODO change initial starting position to 1200
         select(this.ref.current)
             .attr('transform', `translate(390.0, 0)`)
             .append('path')
@@ -47,13 +44,19 @@ export default class SliderIcon extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
+        const scalingFunction = (radius) => (110.5 / 245) * radius;
         select(this.ref.current)
-            .attr('transform', `translate(${this.x + this.props.radiusLight * (110.5 / 245)}, 0)`);
+            .attr('transform', `translate(${this.x + scalingFunction(this.props.radiusLight)}, 0)`);
     }
 
     render() {
-        return (
+        console.log(`this is the x: ${this.x}`);
+
+        return <React.Fragment>
             <g ref={this.ref} />
-        );
+            <g>
+                <line x1={this.x} y1={25} x2={this.x} y2={60} strokeWidth={1} stroke={"red"} visibility={"visible"} />
+            </g>
+        </React.Fragment>
     }
 }

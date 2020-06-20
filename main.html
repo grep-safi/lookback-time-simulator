@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<head>
+    <meta charset="utf-8">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+        body {
+            font: 10px sans-serif;
+        }
+        .axis text {
+            font-size: 1.5em;
+        }
+
+        .axis line {
+            shape-rendering: crispEdges;
+            stroke: #000;
+            stroke-width: 3px;
+        }
+
+        /* Below, we set the tick length to 10px. The stroke-dasharray only displays 6px to create a minor tick effect. */
+        .axis .minor line {
+            stroke: #777;
+            stroke-width: 1px;
+            stroke-dasharray: 6,4;
+        }
+    </style>
+</head>
+
+<body>
+<div id="block"></div>
+<script>
+    function drawAxis(margin, width, height, data, selector) {
+        // Clear any existing content
+        d3.select(selector).selectAll("*").remove();
+
+        var svg = d3.select(selector)
+            .append("svg")
+            .attr("width", width)
+            .attr("height", height);
+
+        // Only keep the values
+        var tickValues = ticks.map( function(t) { return t.value; });
+
+        // How much pixels are available for displaying the axis
+        var dx = width - margin.right - margin.left;
+
+        // x position: map the input domain (tickValues) to the output range (pixels)
+        var xScale = d3.scaleLinear()
+            .domain([tickValues[0], tickValues[tickValues.length - 1]])
+            .range([margin.left, dx]);
+
+        // create the x-axis, where the ticks have length 10px, and a padding (space) for the text of 5px. Use the tickValues as ticks, and only render text for major ticks.
+        var xAxis = d3.axisBottom(xScale)
+            .tickSize(10)
+            .tickPadding(5)
+            .tickValues(tickValues)
+            .tickFormat(function (d, i) {
+                return ticks[i].isVisible ? d : "";
+            });
+
+        var x_axis = svg.append("g")
+            .attr("id", "x_axis")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0, " + height / 2 + ")")
+            .call(xAxis)
+
+        // Add the class 'minor' to all minor ticks
+        x_axis.selectAll("g")
+            .filter(function (d, i) {
+                return !ticks[i].isVisible;
+            })
+            .classed("minor", true);
+
+        // console.log("all the visible points", xAxis.scale().ticks(xAxis.ticks()[0]));
+    }
+
+    // dimensions
+    var margin = {
+        top: 20,
+        right: 20,
+        bottom: 30,
+        left: 40
+    };
+    var width = 500;
+    var height = 60;
+
+    var ticks = [];
+    for (var i = 0; i <= 100; i += 2.5) {
+        ticks.push( { value: i, isVisible: i % 10 === 0 });
+    }
+
+    drawAxis(margin, width, height, ticks, "#block");
+</script>
+</body>

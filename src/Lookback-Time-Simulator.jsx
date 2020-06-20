@@ -8,12 +8,13 @@ export default class LookbackTimeSimulator extends React.Component {
         super(props);
         this.initialState = {
             radiusLight: 0,
+            startTime: 1200,
+            hasStarted: false,
+            isPlaying: false,
             superNovaButtonTxt: "Go Supernova",
-            animationPlaying: false,
         };
 
         this.state = this.initialState;
-
         this.raf = null;
     }
 
@@ -35,6 +36,7 @@ export default class LookbackTimeSimulator extends React.Component {
 
                     <TimelineSlider
                         radiusLight={this.state.radiusLight}
+                        hasStarted={this.state.hasStarted}
                     />
 
                     <button
@@ -52,28 +54,19 @@ export default class LookbackTimeSimulator extends React.Component {
     }
 
     modifyAnimation() {
-        if (!this.state.animationPlaying) {
-            this.raf = requestAnimationFrame(this.animate.bind(this));
-        } else {
-            cancelAnimationFrame(this.raf);
-        }
+        if (!this.state.isPlaying) this.raf = requestAnimationFrame(this.animate.bind(this));
+        else cancelAnimationFrame(this.raf);
 
         this.setState({
-            animationPlaying: !this.state.animationPlaying,
-            superNovaButtonTxt: this.state.animationPlaying ? "Resume" : "Pause"
+            hasStarted: true,
+            isPlaying: !this.state.isPlaying,
+            superNovaButtonTxt: this.state.isPlaying ? "Resume" : "Pause"
         })
     }
 
     animate() {
-        this.setState({
-            radiusLight: this.state.radiusLight + 0.5
-        });
-
-        if (this.state.radiusLight > 500 || !this.state.animationPlaying) {
-            cancelAnimationFrame(this.raf);
-        } else {
-            requestAnimationFrame(this.animate.bind(this));
-        }
+        this.setState({ radiusLight: this.state.radiusLight + 0.5 });
+        if (!(this.state.radiusLight > 100 || !this.state.isPlaying)) requestAnimationFrame(this.animate.bind(this));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
