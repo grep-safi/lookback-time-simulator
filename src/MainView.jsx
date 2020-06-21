@@ -29,7 +29,6 @@ export default class MainView extends React.Component {
     }
 
     render() {
-        console.log(`radius: ${this.props.radiusLight}`);
         return (
             <div className={"main-view"}>
                 <svg width={WIDTH} height={HEIGHT}>

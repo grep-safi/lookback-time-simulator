@@ -8,7 +8,7 @@ export default class LookbackTimeSimulator extends React.Component {
         super(props);
         this.initialState = {
             radiusLight: 0,
-            startTime: 1200,
+            startTime: `1200 AD`,
             hasStarted: false,
             isPlaying: false,
             superNovaButtonTxt: "Go Supernova",
@@ -37,6 +37,7 @@ export default class LookbackTimeSimulator extends React.Component {
                     <TimelineSlider
                         radiusLight={this.state.radiusLight}
                         hasStarted={this.state.hasStarted}
+                        updateSupernovaStart={this.updateSupernovaStart.bind(this)}
                     />
 
                     <button
@@ -61,6 +62,13 @@ export default class LookbackTimeSimulator extends React.Component {
             isPlaying: !this.state.isPlaying,
             superNovaButtonTxt: this.state.isPlaying ? "Resume" : "Pause"
         })
+    }
+
+    // If the simulation hasn't started playing yet, update the start time
+    updateSupernovaStart(newStartTime) {
+        if (!this.state.hasStarted) {
+            this.setState({ startTime: newStartTime > 0 ? `${newStartTime} AD` : `${newStartTime} BC` });
+        }
     }
 
     animate() {
