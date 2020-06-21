@@ -24,22 +24,44 @@ body {
 .timeline-slider {
     border: 1px solid palevioletred;
     position: relative;
-    width: 800px;
+    margin: 0 auto;
+    width: 900px;
     height: 100px;
 }
 
 
 .controls {
     margin-top: 10px;
+    background-color: dimgrey;
     position: relative;
     width: 950px;
     height: 200px;
     border: 1px solid aquamarine;
 }
 
+
+
+
 #head-text {
     margin-left: 10px;
     margin-top: 10px;
     text-align: center;
     color: darkgoldenrod;
+}
+
+.axis text {
+    font-size: 1.5em;
+}
+
+.axis line {
+    shape-rendering: crispEdges;
+    stroke: white;
+    stroke-width: 1px;
+}
+
+/* Below, we set the tick length to 10px. The stroke-dasharray only displays 6px to create a minor tick effect. */
+.axis .minor line {
+    stroke: white;
+    stroke-width: 1px;
+    stroke-dasharray: 6,4;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import SliderIcon from "./SliderIcon";
 import Timeline from "./Timeline";
 
-const WIDTH = 800;
+const WIDTH = 900;
 const HEIGHT = 100;
 
 export default class TimelineSlider extends React.Component {
@@ -26,7 +26,7 @@ export default class TimelineSlider extends React.Component {
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
 
-                    <rect width={"100%"} height={"100%"} fill={"#360000"} />
+                    {/*<rect width={"100%"} height={"100%"} fill={"#777"} />*/}
 
                     <g>
                         <Timeline

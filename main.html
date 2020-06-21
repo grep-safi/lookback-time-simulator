@@ -31,8 +31,6 @@
 <script>
     function drawAxis(margin, width, height, data, selector) {
         // Clear any existing content
-        d3.select(selector).selectAll("*").remove();
-
         var svg = d3.select(selector)
             .append("svg")
             .attr("width", width)
@@ -81,6 +79,7 @@
         bottom: 30,
         left: 40
     };
+
     var width = 500;
     var height = 60;
 
