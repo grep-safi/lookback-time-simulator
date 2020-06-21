@@ -1,5 +1,8 @@
 import React from 'react';
-import {select, drag, event} from 'd3/dist/d3';
+import {select, drag, event, scaleLinear} from 'd3/dist/d3';
+
+const scalingFunction = (radius) => (110.5 / 245) * radius;
+const yearScale = scaleLinear().domain([-8000, 10000]).range([38, 838]);
 
 export default class SliderIcon extends React.Component {
     constructor(props) {
@@ -15,8 +18,8 @@ export default class SliderIcon extends React.Component {
         const sizeX = 12.5;
         const updateX = this.updateX.bind(this);
 
-        const minPixel = -378.0;
-        const maxPixel = 363.5;
+        const minPixel = 38;
+        const maxPixel = 838;
 
         // TODO add dragging function that changes props so that we can "go back" in time
         const handleDrag = drag()
@@ -24,19 +27,18 @@ export default class SliderIcon extends React.Component {
                 // console.log(`helooooooo`);
             })
             .on('drag', function() {
-                const me = select(this);
                 let x = event.x - sizeX;
-                // console.log(`x this is x       ${x}`);
                 if (x > maxPixel) x = maxPixel;
                 if (x < minPixel) x = minPixel;
+                let v = yearScale(1200);
+                console.log(`her is the v ${v}`);
                 updateX(x);
-                me
-                    .attr("transform", `translate(${x}, 0)`)
+                select(this).attr("transform", `translate(${x}, 0)`);
             });
 
         select(this.ref.current)
-            .attr('transform', `translate(390.0, 0)`)
             .append('path')
+            .attr('transform', `translate(446.88888888888886, 0)`)
             .attr('d', 'M0 20 L 25 20 L 12.5 45 L 0 20 Z')
             .attr('fill', "lightpink")
             .attr('stroke', "black")
@@ -44,14 +46,11 @@ export default class SliderIcon extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-        const scalingFunction = (radius) => (110.5 / 245) * radius;
         select(this.ref.current)
             .attr('transform', `translate(${this.x + scalingFunction(this.props.radiusLight)}, 0)`);
     }
 
     render() {
-        console.log(`this is the x: ${this.x}`);
-
         return <React.Fragment>
             <g ref={this.ref} />
             <g>

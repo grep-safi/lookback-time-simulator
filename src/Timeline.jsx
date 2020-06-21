@@ -57,13 +57,6 @@ export default class Timeline extends React.Component {
             .classed("minor", true);
     }
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
-        // const scalingFunction = (radius) => (110.5 / 245) * radius;
-        //
-        // select(this.ref.current)
-        //     .attr('transform', `translate(${this.x + scalingFunction(this.props.radiusLight)}, 0)`);
-    }
-
     render() {
         return (
             <g ref={this.ref} />

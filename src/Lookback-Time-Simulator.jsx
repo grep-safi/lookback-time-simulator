@@ -40,14 +40,13 @@ export default class LookbackTimeSimulator extends React.Component {
                     />
 
                     <button
-                        type={"box"}
-                        className={"go-supernova"}
+                        className={"go-supernova-btn"}
                         onClick={this.modifyAnimation.bind(this)}
                     >
                         {this.state.superNovaButtonTxt}
                     </button>
 
-                    <p id={"time-text"}>Supernova occurs</p>
+                    <p id={"time-text"}>Supernova occurs: {this.state.startTime}</p>
                 </div>
             </React.Fragment>
         );
