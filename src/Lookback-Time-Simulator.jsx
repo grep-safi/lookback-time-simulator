@@ -4,6 +4,7 @@ import MainView from './MainView.jsx';
 import TimelineSlider from "./TimelineSlider";
 
 const radiusLightToYears = (radius) => radius * (3000 / 246);
+const yearsToRadiusLight = (years) => years * (246 / 3000);
 
 export default class LookbackTimeSimulator extends React.Component {
     constructor(props) {
@@ -73,7 +74,7 @@ export default class LookbackTimeSimulator extends React.Component {
         if (!this.state.hasStarted) {
             this.setState({ startTime: newStartTime });
         } else {
-            // this.setState({ radiusLightYears: radiusLightToYears(newStartTime) })
+            this.setState({ radiusLight: yearsToRadiusLight(newStartTime - this.state.startTime) });
         }
     }
 

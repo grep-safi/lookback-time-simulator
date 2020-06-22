@@ -19,6 +19,7 @@ export default class SliderIcon extends React.Component {
         this.ref = React.createRef();
         this.iconWidth = 12.5;
         this.iconX = yearScale(1200) - this.iconWidth;
+        this.animationCompleted = false;
     }
 
     updateX(x) {
@@ -66,10 +67,14 @@ export default class SliderIcon extends React.Component {
 
     render() {
         const SNOccursVisible = this.props.hasStarted ? `visible` : `hidden`;
-        const SNOccursX = this.iconX + this.iconWidth;
+        const SNOccursX = yearScale(this.props.startTime);
 
-        const SNObservedVisible = this.props.hasStarted && this.props.radiusLight >= observerEyeX ? `visible` : `hidden`;
-        const SNObservedX = this.iconX + scalingFunction(observerEyeX) + this.iconWidth;
+        if (this.props.hasStarted && this.props.radiusLight >= observerEyeX) {
+            this.animationCompleted = true;
+        }
+
+        const SNObservedVisible = this.animationCompleted ? `visible` : `hidden`;
+        const SNObservedX = yearScale(this.props.startTime + 3000);
 
         const textWidth = 30;
         const textPosition = yearScale(this.props.startTime) - textWidth;

@@ -42,9 +42,6 @@ export default class TimelineSlider extends React.Component {
                             updateSupernovaStart={this.props.updateSupernovaStart}
                         />
                     </g>
-
-                    {/*<line x1={lineX} y1={25} x2={lineX} y2={60} strokeWidth={1} stroke={"red"} visibility={this.props.hasStarted ? "visible" : "hidden"} />*/}
-                    {/*<line x1={lineX} y1={25} x2={lineX} y2={60} strokeWidth={1} stroke={"red"} visibility={"visible"} />*/}
                 </svg>
             </div>
         );
