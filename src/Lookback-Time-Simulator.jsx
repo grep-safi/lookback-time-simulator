@@ -3,10 +3,13 @@ import NavigationBar from './NavigationBar.jsx';
 import MainView from './MainView.jsx';
 import TimelineSlider from "./TimelineSlider";
 
+const radiusLightToYears = (radius) => radius * (3000 / 246);
+
 export default class LookbackTimeSimulator extends React.Component {
     constructor(props) {
         super(props);
         this.initialState = {
+            // 246 radiusLight corresponds to 3000 years
             radiusLight: 0,
             startTime: 1200,
             hasStarted: false,
@@ -69,17 +72,21 @@ export default class LookbackTimeSimulator extends React.Component {
     updateSupernovaStart(newStartTime) {
         if (!this.state.hasStarted) {
             this.setState({ startTime: newStartTime });
+        } else {
+            // this.setState({ radiusLightYears: radiusLightToYears(newStartTime) })
         }
     }
 
     getYearString() {
         const currStart = this.state.startTime;
-        return currStart > 0 ? `${currStart} AD` : `${currStart} BC`;
+        return currStart > 0 ? `${currStart} AD` : `${-currStart} BC`;
     }
 
     animate() {
         this.setState({ radiusLight: this.state.radiusLight + 0.5 });
-        if (!(this.state.radiusLight === 500 || !this.state.isPlaying)) requestAnimationFrame(this.animate.bind(this));
+        if (!(radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000 || !this.state.isPlaying)) {
+            requestAnimationFrame(this.animate.bind(this));
+        }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
