@@ -27,7 +27,7 @@ body {
     height: 100px;
     margin: 0 auto;
 
-    border: 1px solid palevioletred;
+    /*border: 1px solid palevioletred;*/
     position: relative;
 }
 
@@ -41,7 +41,11 @@ body {
 }
 
 #time-text {
-    margin-left: 50px;
+    /*border: 1px solid aquamarine;*/
+    float: right;
+    /*margin-top: 5px;*/
+    color: salmon;
+    margin-right: 100px;
     display: inline-block;
 }
 

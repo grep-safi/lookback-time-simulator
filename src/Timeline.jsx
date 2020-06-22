@@ -3,6 +3,7 @@ import { select, selectAll, scaleLinear, axisBottom } from 'd3/dist/d3';
 
 const MAX_TIME = 10000;
 const MIN_TIME = -8000;
+
 const VISIBLE_INCREMENT = 2000;
 const INCREMENT = 500;
 
@@ -25,7 +26,7 @@ export default class Timeline extends React.Component {
         for (let i = MIN_TIME; i <= MAX_TIME; i += INCREMENT) {
             ticks.push( { value: i, isVisible: i % VISIBLE_INCREMENT === 0, isMajor: i % INCREMENT && !(i % VISIBLE_INCREMENT)});
         }
-        const tickValues = ticks.map((t) => t.value)
+        const tickValues = ticks.map((t) => t.value);
 
         const xScale = scaleLinear()
             .domain([tickValues[0], tickValues[tickValues.length - 1]])
@@ -50,7 +51,8 @@ export default class Timeline extends React.Component {
             .append("g")
             .attr("id", "timeline")
             .attr("class", "x axis")
-            .attr("transform", "translate(0, " + HEIGHT / 2 + ")")
+            // .attr("transform", "translate(0, " + HEIGHT / 2 + ")")
+            .attr("transform", `translate(0, ${HEIGHT / 2 + 10})`)
             .call(xAxis)
             .selectAll("g")
             .filter((d, i) => !ticks[i].isVisible )

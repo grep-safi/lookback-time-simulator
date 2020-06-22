@@ -8,7 +8,7 @@ export default class LookbackTimeSimulator extends React.Component {
         super(props);
         this.initialState = {
             radiusLight: 0,
-            startTime: `1200 AD`,
+            startTime: 1200,
             hasStarted: false,
             isPlaying: false,
             superNovaButtonTxt: "Go Supernova",
@@ -37,6 +37,7 @@ export default class LookbackTimeSimulator extends React.Component {
                     <TimelineSlider
                         radiusLight={this.state.radiusLight}
                         hasStarted={this.state.hasStarted}
+                        startTime={this.state.startTime}
                         updateSupernovaStart={this.updateSupernovaStart.bind(this)}
                     />
 
@@ -47,7 +48,7 @@ export default class LookbackTimeSimulator extends React.Component {
                         {this.state.superNovaButtonTxt}
                     </button>
 
-                    <p id={"time-text"}>Supernova occurs: {this.state.startTime}</p>
+                    <p id={"time-text"}>Supernova occurs: {this.getYearString()}</p>
                 </div>
             </React.Fragment>
         );
@@ -67,13 +68,18 @@ export default class LookbackTimeSimulator extends React.Component {
     // If the simulation hasn't started playing yet, update the start time
     updateSupernovaStart(newStartTime) {
         if (!this.state.hasStarted) {
-            this.setState({ startTime: newStartTime > 0 ? `${newStartTime} AD` : `${newStartTime} BC` });
+            this.setState({ startTime: newStartTime });
         }
+    }
+
+    getYearString() {
+        const currStart = this.state.startTime;
+        return currStart > 0 ? `${currStart} AD` : `${currStart} BC`;
     }
 
     animate() {
         this.setState({ radiusLight: this.state.radiusLight + 0.5 });
-        if (!(this.state.radiusLight > 100 || !this.state.isPlaying)) requestAnimationFrame(this.animate.bind(this));
+        if (!(this.state.radiusLight === 500 || !this.state.isPlaying)) requestAnimationFrame(this.animate.bind(this));
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {

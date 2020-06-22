@@ -37,6 +37,8 @@ export default class TimelineSlider extends React.Component {
                     <g>
                         <SliderIcon
                             radiusLight={this.props.radiusLight}
+                            startTime={this.props.startTime}
+                            hasStarted={this.props.hasStarted}
                             updateSupernovaStart={this.props.updateSupernovaStart}
                         />
                     </g>
