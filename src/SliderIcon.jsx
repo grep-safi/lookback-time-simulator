@@ -61,6 +61,9 @@ export default class SliderIcon extends React.Component {
     componentDidUpdate(prevProps, prevState, snapShot) {
         // Radius light hits viewer's eye at 246
         const movementX = this.iconX + scalingFunction(this.props.radiusLight);
+        console.log(`icon: ${this.iconX}`);
+        // this.updateX(movementX);
+        console.log(`radLight: ${this.props.radiusLight} and movement: ${movementX}`);
         select('#myIcon')
             .attr('transform', `translate(${movementX}, 5)`);
     }

@@ -6,6 +6,8 @@ import TimelineSlider from "./TimelineSlider";
 const radiusLightToYears = (radius) => radius * (3000 / 246);
 const yearsToRadiusLight = (years) => years * (246 / 3000);
 
+const observerEyeX = 246;
+
 export default class LookbackTimeSimulator extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +19,8 @@ export default class LookbackTimeSimulator extends React.Component {
             isPlaying: false,
             superNovaButtonTxt: "Go Supernova",
         };
+
+        this.displayObservationText = false;
 
         this.state = this.initialState;
         this.raf = null;
@@ -52,7 +56,8 @@ export default class LookbackTimeSimulator extends React.Component {
                         {this.state.superNovaButtonTxt}
                     </button>
 
-                    <p id={"time-text"}>Supernova occurs: {this.getYearString()}</p>
+                    <p id={"time-text"}>Supernova occurs: {this.getYearString()} <br />{this.getObservedYearString()}</p>
+
                 </div>
             </React.Fragment>
         );
@@ -83,14 +88,25 @@ export default class LookbackTimeSimulator extends React.Component {
         return currStart > 0 ? `${currStart} AD` : `${-currStart} BC`;
     }
 
+    getObservedYearString() {
+        if (this.displayObservationText) {
+            const currStart = this.state.startTime + 3000;
+            return currStart > 0 ? `Is Observed: ${currStart} AD` : `Is Observed: ${-currStart} BC`;
+        }
+        return "";
+    }
+
     animate() {
         this.setState({ radiusLight: this.state.radiusLight + 0.5 });
+
         if (!(radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000 || !this.state.isPlaying)) {
             requestAnimationFrame(this.animate.bind(this));
         }
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-
+        if (this.state.hasStarted && this.state.radiusLight >= observerEyeX) {
+            this.displayObservationText = true;
+        }
     }
 }
