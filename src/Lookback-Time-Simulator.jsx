@@ -46,6 +46,7 @@ export default class LookbackTimeSimulator extends React.Component {
                     <TimelineSlider
                         radiusLight={this.state.radiusLight}
                         hasStarted={this.state.hasStarted}
+                        isPlaying={this.state.isPlaying}
                         startTime={this.state.startTime}
                         updateSupernovaStart={this.updateSupernovaStart.bind(this)}
                     />

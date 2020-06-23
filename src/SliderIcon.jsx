@@ -44,28 +44,33 @@ export default class SliderIcon extends React.Component {
         const iconWidth = this.iconWidth;
         const updateSupernovaStart = this.props.updateSupernovaStart.bind(this);
         const updateX = this.updateX.bind(this);
+        const animating = this.props.isPlaying;
 
         return drag()
             .on('drag', function() {
-                let x = event.x - iconWidth;
-                if (x > (maxPixel - iconWidth)) x = maxPixel - iconWidth;
-                if (x < (minPixel - iconWidth)) x = minPixel - iconWidth;
-                updateX(x);
+                if (!animating) {
+                    let x = event.x - iconWidth;
+                    if (x > (maxPixel - iconWidth)) x = maxPixel - iconWidth;
+                    if (x < (minPixel - iconWidth)) x = minPixel - iconWidth;
+                    updateX(x);
 
-                const newStartYear = yearScale.invert(x + iconWidth);
-                updateSupernovaStart(Math.round(newStartYear));
-                select('#myIcon').attr("transform", `translate(${x}, 5)`);
+                    const newStartYear = yearScale.invert(x + iconWidth);
+                    updateSupernovaStart(Math.round(newStartYear));
+                    select('#myIcon').attr("transform", `translate(${x}, 5)`);
+                }
             });
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
         // Radius light hits viewer's eye at 246
-        const movementX = this.iconX + scalingFunction(this.props.radiusLight);
-        console.log(`icon: ${this.iconX}`);
-        // this.updateX(movementX);
-        console.log(`radLight: ${this.props.radiusLight} and movement: ${movementX}`);
+        // let radLightIncrease = scalingFunction(this.props.radiusLight);
+        // if (scalingFunction(this.props.radiusLight) < 0) {
+        // }
+
+        this.iconX = this.iconX + scalingFunction(this.props.radiusLight - prevProps.radiusLight);
+        console.log(`curr: ${this.props.radiusLight} and prev: ${prevProps.radiusLight}`);
         select('#myIcon')
-            .attr('transform', `translate(${movementX}, 5)`);
+            .attr('transform', `translate(${this.iconX}, 5)`);
     }
 
     render() {

@@ -25,9 +25,6 @@ export default class TimelineSlider extends React.Component {
         return (
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>
-
-                    {/*<rect width={"100%"} height={"100%"} fill={"#777"} />*/}
-
                     <g>
                         <Timeline
 
@@ -39,6 +36,7 @@ export default class TimelineSlider extends React.Component {
                             radiusLight={this.props.radiusLight}
                             startTime={this.props.startTime}
                             hasStarted={this.props.hasStarted}
+                            isPlaying={this.props.isPlaying}
                             updateSupernovaStart={this.props.updateSupernovaStart}
                         />
                     </g>
