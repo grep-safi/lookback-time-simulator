@@ -2,6 +2,7 @@ import React from 'react';
 import NavigationBar from './NavigationBar.jsx';
 import MainView from './MainView.jsx';
 import TimelineSlider from "./TimelineSlider";
+import { select } from 'd3/dist/d3';
 
 const radiusLightToYears = (radius) => radius * (3000 / 246);
 const yearsToRadiusLight = (years) => years * (246 / 3000);
@@ -53,6 +54,7 @@ export default class LookbackTimeSimulator extends React.Component {
 
                     <button
                         className={"go-supernova-btn"}
+                        disabled={radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000}
                         onClick={this.modifyAnimation.bind(this)}
                     >
                         {this.state.superNovaButtonTxt}
