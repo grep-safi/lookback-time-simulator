@@ -18,6 +18,7 @@ export default class LookbackTimeSimulator extends React.Component {
             startTime: 1200,
             hasStarted: false,
             isPlaying: false,
+            endOfTimeReached: false,
             superNovaButtonTxt: "Go Supernova",
         };
 
@@ -54,7 +55,7 @@ export default class LookbackTimeSimulator extends React.Component {
 
                     <button
                         className={"go-supernova-btn"}
-                        disabled={radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000}
+                        disabled={this.state.endOfTimeReached}
                         onClick={this.modifyAnimation.bind(this)}
                     >
                         {this.state.superNovaButtonTxt}
@@ -111,6 +112,21 @@ export default class LookbackTimeSimulator extends React.Component {
     componentDidUpdate(prevProps, prevState, snapshot) {
         if (this.state.hasStarted && this.state.radiusLight >= observerEyeX) {
             this.displayObservationText = true;
+        }
+
+        const endOfTime = radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000;
+
+        if (this.state.endOfTimeReached !== endOfTime) {
+            let txt = this.state.hasStarted ? 'Resume' : 'Go Supernova';
+            if (endOfTime) txt = '...';
+
+            this.setState({
+                isPlaying: false,
+                superNovaButtonTxt: txt,
+                endOfTimeReached: endOfTime
+            });
+
+            cancelAnimationFrame(this.raf);
         }
     }
 }
