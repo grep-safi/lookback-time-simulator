@@ -37,6 +37,7 @@ export default class LookbackTimeSimulator extends React.Component {
 
                 <MainView
                     radiusLight={this.state.radiusLight}
+                    hasStarted={this.state.hasStarted}
                 />
 
                 <div className={"controls"}>
