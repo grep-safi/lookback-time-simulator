@@ -38,6 +38,7 @@ export default class TimelineSlider extends React.Component {
                             hasStarted={this.props.hasStarted}
                             isPlaying={this.props.isPlaying}
                             updateSupernovaStart={this.props.updateSupernovaStart}
+                            resetCounter={this.props.resetCounter}
                         />
                     </g>
                 </svg>

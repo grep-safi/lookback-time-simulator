@@ -20,6 +20,7 @@ export default class LookbackTimeSimulator extends React.Component {
             isPlaying: false,
             endOfTimeReached: false,
             superNovaButtonTxt: "Go Supernova",
+            resetCounter: 0,
         };
 
         this.displayObservationText = false;
@@ -33,7 +34,7 @@ export default class LookbackTimeSimulator extends React.Component {
             <React.Fragment>
                 <div className="navigation-bar">
                     <NavigationBar
-
+                        onReset={this.onReset.bind(this)}
                     />
                 </div>
 
@@ -51,6 +52,7 @@ export default class LookbackTimeSimulator extends React.Component {
                         isPlaying={this.state.isPlaying}
                         startTime={this.state.startTime}
                         updateSupernovaStart={this.updateSupernovaStart.bind(this)}
+                        resetCounter={this.state.resetCounter}
                     />
 
                     <button
@@ -89,13 +91,13 @@ export default class LookbackTimeSimulator extends React.Component {
     }
 
     getYearString() {
-        const currStart = this.state.startTime;
+        const currStart = Math.round(this.state.startTime);
         return currStart > 0 ? `${currStart} AD` : `${-currStart} BC`;
     }
 
     getObservedYearString() {
         if (this.displayObservationText) {
-            const currStart = this.state.startTime + 3000;
+            const currStart = Math.round(this.state.startTime) + 3000;
             return currStart > 0 ? `Is Observed: ${currStart} AD` : `Is Observed: ${-currStart} BC`;
         }
         return "";
@@ -116,17 +118,27 @@ export default class LookbackTimeSimulator extends React.Component {
 
         const endOfTime = radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000;
 
-        if (this.state.endOfTimeReached !== endOfTime) {
-            let txt = this.state.hasStarted ? 'Resume' : 'Go Supernova';
-            if (endOfTime) txt = '...';
+        // if (this.state.endOfTimeReached !== endOfTime) {
+        //     let txt = this.state.hasStarted ? 'Resume' : 'Go Supernova';
+        //     if (endOfTime) txt = '...';
+        //
+        //     this.setState({
+        //         isPlaying: false,
+        //         superNovaButtonTxt: txt,
+        //         endOfTimeReached: endOfTime
+        //     });
+        //
+        //     cancelAnimationFrame(this.raf);
+        // }
+    }
 
-            this.setState({
-                isPlaying: false,
-                superNovaButtonTxt: txt,
-                endOfTimeReached: endOfTime
-            });
-
-            cancelAnimationFrame(this.raf);
-        }
+    onReset() {
+        this.setState({
+            ...this.initialState,
+            resetCounter: this.state.resetCounter + 1
+        });
+        this.displayObservationText = false;
+        cancelAnimationFrame(this.raf);
+        this.raf = null;
     }
 }

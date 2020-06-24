@@ -13,9 +13,9 @@ export default class NavigationBar extends React.Component {
                     <h1 id="title">Lookback Time Simulator</h1>
                     <nav>
                         <ul>
-                            {/*<li>*/}
-                            {/*    <a href="#" data-toggle="modal">Reset</a>*/}
-                            {/*</li>*/}
+                            <li>
+                                <a href="#" onClick={this.props.onReset}>Reset</a>
+                            </li>
                             <li>
                                 <a href="#" data-toggle="modal" data-target="#helpModal">Help</a>
                             </li>

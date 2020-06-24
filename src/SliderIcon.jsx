@@ -20,6 +20,11 @@ export default class SliderIcon extends React.Component {
         this.iconWidth = 12.5;
         this.iconX = yearScale(1200) - this.iconWidth;
         this.animationCompleted = false;
+
+        this.state = {
+
+        };
+
     }
 
     updateX(x) {
@@ -55,7 +60,9 @@ export default class SliderIcon extends React.Component {
                     updateX(x);
 
                     const newStartYear = yearScale.invert(x + iconWidth);
-                    updateSupernovaStart(Math.round(newStartYear));
+                    // const newStartYear = yearScale.invert(x);
+                    // updateSupernovaStart(Math.round(newStartYear));
+                    updateSupernovaStart(newStartYear);
                     select('#myIcon').attr("transform", `translate(${x}, 5)`);
                 }
             });
@@ -64,9 +71,14 @@ export default class SliderIcon extends React.Component {
     componentDidUpdate(prevProps, prevState, snapShot) {
         // Radius light hits viewer's eye at 246
         this.iconX = this.iconX + scalingFunction(this.props.radiusLight - prevProps.radiusLight);
-        console.log(`iconX :${Math.round(this.iconX * 10) / 10}`);
         select('#myIcon')
             .attr('transform', `translate(${this.iconX}, 5)`);
+
+        if (prevProps.resetCounter !== this.props.resetCounter) {
+            this.animationCompleted = false;
+            this.iconX = yearScale(1200) - this.iconWidth;
+            this.setState(this.state);
+        }
     }
 
     render() {
