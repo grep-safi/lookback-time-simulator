@@ -1,1 +1,1 @@
-# hydrogen atom simulator
+# lookback-time-simulator
