@@ -24,7 +24,6 @@ export default class SliderIcon extends React.Component {
         this.state = {
 
         };
-
     }
 
     updateX(x) {
