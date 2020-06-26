@@ -55,7 +55,7 @@ export default class MainView extends React.Component {
             .on('drag', function() {
                 let xPos = event.x;
 
-                console.log(`x: ${xPos}`);
+                // console.log(`x: ${xPos}`);
                 // Ensures that object cannot move outside of bounds
                 if (xPos <= 220) xPos = 220;
                 if (xPos >= WIDTH - 75) xPos = WIDTH - 75;
@@ -89,6 +89,7 @@ export default class MainView extends React.Component {
         }
 
         const radiusCircle = this.props.radiusLight < 0 ? 0 : this.props.radiusLight;
+        console.log(`scane inversionS: ${Math.round(scale.invert(125 + radiusCircle + 125))}`);
         this.props.onChange(125 + radiusCircle >= this.personX, this.time);
         // console.log(`stuff: ${125 + radiusCircle >= this.personX}`);
     }

@@ -124,7 +124,6 @@ export default class LookbackTimeSimulator extends React.Component {
     }
 
     onChange(bool, newSeparationTime) {
-        console.log(`runnign`);
         if (this.state.reachedObserver !== bool || this.state.separationTime !== newSeparationTime) {
             this.setState({
                 reachedObserver: bool,
