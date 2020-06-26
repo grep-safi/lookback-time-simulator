@@ -84,12 +84,12 @@ export default class SliderIcon extends React.Component {
         const SNOccursVisible = this.props.hasStarted ? `visible` : `hidden`;
         const SNOccursX = yearScale(this.props.startTime);
 
-        if (this.props.hasStarted && this.props.radiusLight >= observerEyeX) {
+        if (this.props.hasStarted && this.props.reachedObserver) {
             this.animationCompleted = true;
         }
 
         const SNObservedVisible = this.animationCompleted ? `visible` : `hidden`;
-        const SNObservedX = yearScale(this.props.startTime + 3000);
+        const SNObservedX = yearScale(this.props.startTime + this.props.separationTime);
 
         const textWidth = 30;
         const textPosition = yearScale(this.props.startTime) - textWidth;

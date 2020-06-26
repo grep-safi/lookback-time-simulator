@@ -15,12 +15,12 @@ export default class TimelineSlider extends React.Component {
     }
 
     render() {
-        const size = 800;
-        const shiftUp = -330;
+        // const size = 800;
+        // const shiftUp = -330;
 
         // 24.5 is the minimum limit
         // 766 us the maximum limit
-        const lineX = 24.5;
+        // const lineX = 24.5;
 
         return (
             <div className={"timeline-slider"}>
@@ -39,6 +39,8 @@ export default class TimelineSlider extends React.Component {
                             isPlaying={this.props.isPlaying}
                             updateSupernovaStart={this.props.updateSupernovaStart}
                             resetCounter={this.props.resetCounter}
+                            reachedObserver={this.props.reachedObserver}
+                            separationTime={this.props.separationTime}
                         />
                     </g>
                 </svg>

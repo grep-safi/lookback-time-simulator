@@ -21,6 +21,8 @@ export default class LookbackTimeSimulator extends React.Component {
             endOfTimeReached: false,
             superNovaButtonTxt: "Go Supernova",
             resetCounter: 0,
+            reachedObserver: false,
+            separationTime: 3000,
         };
 
         this.displayObservationText = false;
@@ -41,6 +43,8 @@ export default class LookbackTimeSimulator extends React.Component {
                 <MainView
                     radiusLight={this.state.radiusLight}
                     hasStarted={this.state.hasStarted}
+                    resetCounter={this.state.resetCounter}
+                    onChange={this.onChange.bind(this)}
                 />
 
                 <div className={"controls"}>
@@ -53,6 +57,8 @@ export default class LookbackTimeSimulator extends React.Component {
                         startTime={this.state.startTime}
                         updateSupernovaStart={this.updateSupernovaStart.bind(this)}
                         resetCounter={this.state.resetCounter}
+                        reachedObserver={this.state.reachedObserver}
+                        separationTime={this.state.separationTime}
                     />
 
                     <button
@@ -97,7 +103,7 @@ export default class LookbackTimeSimulator extends React.Component {
 
     getObservedYearString() {
         if (this.displayObservationText) {
-            const currStart = Math.round(this.state.startTime) + 3000;
+            const currStart = Math.round(this.state.startTime) + Math.round(this.state.separationTime);
             return currStart > 0 ? `Is Observed: ${currStart} AD` : `Is Observed: ${-currStart} BC`;
         }
         return "";
@@ -112,33 +118,29 @@ export default class LookbackTimeSimulator extends React.Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        if (this.state.hasStarted && this.state.radiusLight >= observerEyeX) {
+        if (this.state.hasStarted && this.state.reachedObserver) {
             this.displayObservationText = true;
         }
+    }
 
-        const endOfTime = radiusLightToYears(this.state.radiusLight) + this.state.startTime >= 10000;
-
-        // if (this.state.endOfTimeReached !== endOfTime) {
-        //     let txt = this.state.hasStarted ? 'Resume' : 'Go Supernova';
-        //     if (endOfTime) txt = '...';
-        //
-        //     this.setState({
-        //         isPlaying: false,
-        //         superNovaButtonTxt: txt,
-        //         endOfTimeReached: endOfTime
-        //     });
-        //
-        //     cancelAnimationFrame(this.raf);
-        // }
+    onChange(bool, newSeparationTime) {
+        console.log(`runnign`);
+        if (this.state.reachedObserver !== bool || this.state.separationTime !== newSeparationTime) {
+            this.setState({
+                reachedObserver: bool,
+                separationTime: newSeparationTime,
+            });
+        }
     }
 
     onReset() {
+        this.displayObservationText = false;
+        cancelAnimationFrame(this.raf);
+        this.raf = null;
+
         this.setState({
             ...this.initialState,
             resetCounter: this.state.resetCounter + 1
         });
-        this.displayObservationText = false;
-        cancelAnimationFrame(this.raf);
-        this.raf = null;
     }
 }
