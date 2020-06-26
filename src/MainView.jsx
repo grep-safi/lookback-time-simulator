@@ -79,6 +79,12 @@ export default class MainView extends React.Component {
         if (prevProps.resetCounter !== this.props.resetCounter) {
             this.time = 3000;
             this.personX = scale(this.time);
+
+            select('#man')
+                .attr('transform', `translate(${this.personX - 125}, 25)`);
+            select('#star')
+                .attr('transform', `translate(${this.personX - 25}, 48)`);
+
             this.setState(this.state);
         }
 
