@@ -39,7 +39,7 @@ export default class SliderIcon extends React.Component {
             .attr('transform', `translate(${yearScale(initialYear) - this.iconWidth}, 5)`)
             .attr('d', 'M0 20 L 25 20 L 12.5 45 L 0 20 Z')
             .attr('id', 'myIcon')
-            .attr('fill', "lightpink")
+            .attr('fill', '#d0bdf4')
             .attr('stroke', "black")
             .call(handleDrag);
     }

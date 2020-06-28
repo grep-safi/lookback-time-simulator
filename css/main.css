@@ -1,7 +1,7 @@
 body {
     /*background-color: rgb(19,20,24);*/
-    background-color: rgba(0,25,19,0.68);
-    color: whitesmoke;
+    background-color: rgb(229,234,245);
+    color: white;
     font-family: 'Exo', sans-serif;
     position: relative;
 }
@@ -19,7 +19,7 @@ body {
     height: 350px;
 
     position: relative;
-    border: 1px solid black;
+    /* border: 1px solid black; */
 }
 
 .timeline-slider {
@@ -46,14 +46,14 @@ body {
     /*margin-top: 5px;*/
     /*position: relative;*/
     /*bottom: 50px;*/
-    color: salmon;
+    color: rgb(208,189,244);
     margin-right: 100px;
     /*display: inline-block;*/
 }
 
 #observation-text {
     float: right;
-    color: salmon;
+    color: rgb(208,189,244);
     /*position: relative;*/
     /*bottom: 80px;*/
     /*margin-left: -200px;*/
@@ -62,7 +62,7 @@ body {
 .controls {
     margin: 0 auto;
 
-    background-color: dimgrey;
+    background-color: rgb(73,77,95);
     position: relative;
     width: 950px;
     height: 200px;
@@ -75,7 +75,7 @@ body {
     margin-left: 10px;
     margin-top: 10px;
     text-align: center;
-    color: lightblue;
+    color: rgb(160,210,232);
 }
 
 .axis text {
@@ -93,4 +93,9 @@ body {
     stroke: white;
     stroke-width: 1px;
     stroke-dasharray: 6,4;
+}
+
+.modal-content {
+    font-family: Arial, Helvetica, sans-serif;
+    color: black;
 }

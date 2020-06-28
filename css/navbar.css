@@ -1,8 +1,18 @@
 .navigation-bar {
-    border: 1px solid rgb(60, 61, 64);
+    max-width: 965px;
+    /* border: 1px solid rgb(60, 61, 64); */
     padding: 0.5em;
     position: relative;
+    left: 118px;
 }
+
+.navbar {
+    margin: auto;
+    /* margin-left: 100px; */
+    border-width: 5px;
+    border-style: solid;
+    color: rgb(73,77,95);
+}   
 
 .navbar::after {
     content: '';
@@ -13,22 +23,15 @@
 #title {
     float: left;
     font-size: 28px;
-    margin-left: -10px;
-}
-
-#settings {
-    display: inline-block;
-    margin: 15px 2px 5px;
 }
 
 nav {
     float: right;
+    margin-left: 225px;
 }
 
 nav ul {
     list-style: none;
-    margin-left: 550px;
-    /*float: right;*/
 }
 
 nav li {
@@ -37,7 +40,7 @@ nav li {
 }
 
 nav a {
-    color: whitesmoke;
+    color: rgb(73,77,95);
     text-decoration: none;
 }
 

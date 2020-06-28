@@ -88,10 +88,11 @@ export default class MainView extends React.Component {
             this.setState(this.state);
         }
 
+        select('#star')
+            .attr('opacity', this.props.reachedObserver ? 0 : 1);
+
         const radiusCircle = this.props.radiusLight < 0 ? 0 : this.props.radiusLight;
-        console.log(`scane inversionS: ${Math.round(scale.invert(125 + radiusCircle + 125))}`);
         this.props.onChange(125 + radiusCircle >= this.personX, this.time);
-        // console.log(`stuff: ${125 + radiusCircle >= this.personX}`);
     }
 
     getStars(xPos, yPos) {
@@ -115,8 +116,6 @@ export default class MainView extends React.Component {
         // const end = 370;
         const end = this.personX;
         const center = (start + end) / 2;
-
-        // console.log(`required: ${scale.invert(125 + radiusCircle)}`);
 
         return (
             <div className={"main-view"}>

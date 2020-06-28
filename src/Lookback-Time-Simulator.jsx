@@ -44,6 +44,7 @@ export default class LookbackTimeSimulator extends React.Component {
                     radiusLight={this.state.radiusLight}
                     hasStarted={this.state.hasStarted}
                     resetCounter={this.state.resetCounter}
+                    reachedObserver={this.state.reachedObserver}
                     onChange={this.onChange.bind(this)}
                 />
 
