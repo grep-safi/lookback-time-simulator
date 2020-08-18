@@ -138,7 +138,7 @@ export default class MainView extends React.Component {
                         <g> {this.getStars(100, 160)} </g>
                         {/*<g> {this.getStars(345, 48)} </g>*/}
 
-                        <circle cx={125} cy={186} r={radiusCircle} stroke={"red"} fill={"none"} />
+                        <circle cx={125} cy={186} r={radiusCircle} stroke={"gold"} fill={"none"} />
                     </g>
                 </svg>
             </div>
