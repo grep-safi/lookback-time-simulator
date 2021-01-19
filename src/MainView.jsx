@@ -54,8 +54,6 @@ export default class MainView extends React.Component {
         return drag()
             .on('drag', function() {
                 let xPos = event.x;
-
-                // console.log(`x: ${xPos}`);
                 // Ensures that object cannot move outside of bounds
                 if (xPos <= 220) xPos = 220;
                 if (xPos >= WIDTH - 75) xPos = WIDTH - 75;
@@ -124,7 +122,6 @@ export default class MainView extends React.Component {
                     <g>
                         <text x={center - 60} y={320} fill={"aqua"}>{Math.round(this.time)} Light Years</text>
                         <g ref={this.ref} />
-                        {/*<image x={250} y={25} href={"./img/puzzled-man.jpg"} height={250} width={250} />*/}
 
                         Horizontal
                         <line x1={start} x2={end} y1={290} y2={290} stroke={'red'} />
@@ -136,7 +133,6 @@ export default class MainView extends React.Component {
                         <line x1={center} x2={center} y1={290} y2={300} stroke={'red'} />
 
                         <g> {this.getStars(100, 160)} </g>
-                        {/*<g> {this.getStars(345, 48)} </g>*/}
 
                         <circle cx={125} cy={186} r={radiusCircle} stroke={"gold"} fill={"none"} />
                     </g>

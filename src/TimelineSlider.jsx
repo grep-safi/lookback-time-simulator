@@ -10,18 +10,7 @@ export default class TimelineSlider extends React.Component {
         super(props);
     }
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
-
-    }
-
     render() {
-        // const size = 800;
-        // const shiftUp = -330;
-
-        // 24.5 is the minimum limit
-        // 766 us the maximum limit
-        // const lineX = 24.5;
-
         return (
             <div className={"timeline-slider"}>
                 <svg width={WIDTH} height={HEIGHT}>

@@ -59,8 +59,6 @@ export default class SliderIcon extends React.Component {
                     updateX(x);
 
                     const newStartYear = yearScale.invert(x + iconWidth);
-                    // const newStartYear = yearScale.invert(x);
-                    // updateSupernovaStart(Math.round(newStartYear));
                     updateSupernovaStart(newStartYear);
                     select('#myIcon').attr("transform", `translate(${x}, 5)`);
                 }

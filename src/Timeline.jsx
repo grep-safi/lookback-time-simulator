@@ -51,7 +51,6 @@ export default class Timeline extends React.Component {
             .append("g")
             .attr("id", "timeline")
             .attr("class", "x axis")
-            // .attr("transform", "translate(0, " + HEIGHT / 2 + ")")
             .attr("transform", `translate(0, ${HEIGHT / 2 + 10})`)
             .call(xAxis)
             .selectAll("g")
